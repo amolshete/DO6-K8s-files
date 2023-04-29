@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: card-website
+        image: amol1996/card-website-private:v5
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        - name: demo-secret
+        
